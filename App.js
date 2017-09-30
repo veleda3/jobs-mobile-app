@@ -22,7 +22,7 @@ export default class App extends React.Component {
               review: {
                 screen: ReviewScreen
               },
-              setting: {
+              settings: {
                 screen: SettingsScreen
               }
             })
