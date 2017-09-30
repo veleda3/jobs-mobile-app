@@ -1,16 +1,18 @@
 import React from 'react';
-import { View, Text, ScrollView, Dimensions } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 export default class Slides extends React.Component {
+
   renderLastSlide(index) {
-    if (index === this.props.data.lenght - 1) {
+    if (index === this.props.data.length - 1) {
       return (
         <Button
           title="ready?"
           raised
+          onPress={this.props.onSlidesComplete}
           buttonStyle={styles.buttonStyle}
         />
       );
@@ -20,13 +22,14 @@ export default class Slides extends React.Component {
   renderSlides() {
     return this.props.data.map((slide, index) => {
       return (
-        <View
+        <Image
           key={slide.text}
-          style={[styles.slideStyle, { backgroundColor: slide.color }]}
+          style={styles.slideStyle}
+          source={{ uri: slide.image }}
         >
           <Text style={styles.textStyle}>{slide.text}</Text>
           {this.renderLastSlide(index)}
-        </View>
+        </Image>
       );
     });
   }
@@ -50,11 +53,13 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT
+    height: SCREEN_HEIGHT,
+    backgroundColor: '#ccc'
   },
   textStyle: {
     fontSize: 30,
-    color: 'white'
+    color: 'white',
+    alignItems: 'center'
   },
   buttonStyle: {
     backgroundColor: '#0288D1',
