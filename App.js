@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
+import store from './store';
+
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import MapScreen from './screens/MapScreen';
@@ -19,29 +22,33 @@ export default class App extends React.Component {
           deck: { screen: DeckScreen },
           review: {
             screen: StackNavigator({
-              review: {
-                screen: ReviewScreen
-              },
-              settings: {
-                screen: SettingsScreen
-              }
+              review: { screen: ReviewScreen },
+              settings: { screen: SettingsScreen }
             })
           }
         })
       }
+    },
+    {
+      navigationOptions: {
+        tabBar: { visible: false }
       },
-      {
-        tabBarPosition: 'bottom',
-        animationEnabled: true,
-        tabBarOptions: {
-          activeTintColor: '#e91e63',
-        },
+      lazyLoad: true
+    },
+    {
+      tabBarPosition: 'bottom',
+      animationEnabled: true,
+      tabBarOptions: {
+        activeTintColor: '#e91e63',
+      },
     });
 
     return (
-      <View style={styles.container}>
-        <MainNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }
