@@ -37,10 +37,7 @@ export default class App extends React.Component {
     },
     {
       tabBarPosition: 'bottom',
-      animationEnabled: true,
-      tabBarOptions: {
-        activeTintColor: '#e91e63',
-      },
+      animationEnabled: true
     });
 
     return (
