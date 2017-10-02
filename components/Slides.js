@@ -54,7 +54,7 @@ const styles = {
     alignItems: 'center',
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    backgroundColor: '#ccc'
+    backgroundColor:'transparent'
   },
   textStyle: {
     fontSize: 30,
