@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
+import { connect } from 'react-redux';
 
 
-console.log(StackNavigator.ReviewScreen);
-export default class ReviewScreen extends React.Component {
+
+class ReviewScreen extends React.Component {
   static navigationOptions = {
 
     title: 'Review Jobs',
@@ -38,3 +39,11 @@ export default class ReviewScreen extends React.Component {
     );
   }
 }
+
+function mapStateToProps({ likes }) {
+  return {
+    likes
+  };
+}
+
+export default connect(mapStateToProps)(ReviewScreen)
