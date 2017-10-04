@@ -2,7 +2,7 @@ import { FETCH_JOBS } from '../actions/types';
 
 
 const INITIAL_STATE = {
-  result: []
+  results: []
 };
 
 export default function (state = INITIAL_STATE, action) {
