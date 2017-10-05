@@ -8,6 +8,14 @@ import Swipe from '../components/swipe';
 
 
 class DeckScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Jobs',
+    tabBar: {
+      icon: ({ tintColor }) => {
+        return <Icon name="description" size={30} color={tintColor} />;
+      }
+    }
+  }
   renderCard(job) {
     const initialRegion = {
      longitude: job.longitude,
@@ -38,9 +46,17 @@ class DeckScreen extends React.Component {
    );
  }
 
- renderNoMoreCards() {
+ renderNoMoreCards () {
    return (
      <Card title="no more jobs">
+      <Button
+        title="Back to Map"
+        large
+        icon={{ name: 'my-location' }}
+        backgroundColor="#03A9F4"
+        onPress={() => this.props.navigation.navigate('map')}
+      />
+
      </Card>
    );
  }
@@ -51,7 +67,7 @@ class DeckScreen extends React.Component {
           <Swipe
             data={this.props.jobs}
             renderCard={this.renderCard}
-            renderNoMoreCards={this.renderNoMoreCards}
+            renderNoMoreCards={this.renderNoMoreCards.bind(this)}
             keyProp="jobkey"
             onSwipeRight={(job => this.props.likeJob(job))}
           />
