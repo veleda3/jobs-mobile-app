@@ -1,11 +1,18 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import * as actions from '../actions';
 
 
 class SettingsScreen extends React.Component {
+    static navigationOptions ={
+      header: {
+        style: {
+          marginTop: Platform.OS === 'android' ? 24 : 0
+        }
+      }
+    }
     render() {
       return (
         <View>
